@@ -2986,3 +2986,380 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
   .hotel-grid .eg-col-left { border-right: none; border-bottom: 1px solid var(--ink); }
 }
 ```
+
+---
+
+## 21. 报纸多栏排版
+
+适用场景：信息密度高的科普内容、长篇摘要、多角度并列信息展示。模拟传统报纸的多栏 + 分隔线 + 手写批注风格。
+
+```html
+<section class="newspaper-layout">
+  <div class="masthead">THE DAILY BRIEF</div>
+  <div class="newspaper-grid">
+    <div class="news-col">
+      <h3 class="news-headline">主标题文字</h3>
+      <p class="news-body">正文内容段落，模拟报纸的紧凑排版。信息密度高，行距略紧。</p>
+      <p class="news-handwrite">↑ 手写批注强调</p>
+    </div>
+    <div class="news-divider"></div>
+    <div class="news-col">
+      <h3 class="news-headline">第二栏标题</h3>
+      <p class="news-body">第二栏内容，与第一栏并列呈现不同维度信息。</p>
+    </div>
+    <div class="news-divider"></div>
+    <div class="news-col">
+      <h3 class="news-headline">第三栏标题</h3>
+      <p class="news-body">第三栏内容，补充角度。</p>
+      <p class="news-handwrite">重点！！</p>
+    </div>
+  </div>
+</section>
+```
+
+```css
+.newspaper-layout {
+  background: #f5f0e8;
+  color: #1a1a1a;
+  padding: clamp(40px, 6vh, 80px) clamp(24px, 4vw, 60px);
+}
+.masthead {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  text-align: center;
+  border-bottom: 3px solid #000;
+  border-top: 1px solid #000;
+  padding: 12px 0;
+  margin-bottom: clamp(20px, 3vh, 36px);
+}
+.newspaper-grid {
+  display: grid;
+  grid-template-columns: 2fr 1px 1fr 1px 1fr;
+  gap: clamp(16px, 2vw, 28px);
+}
+.news-divider {
+  background: #333;
+}
+.news-col {
+  font-size: 0.85rem;
+  line-height: 1.85;
+}
+.news-headline {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.news-body {
+  color: #333;
+}
+.news-handwrite {
+  font-family: 'Caveat', cursive;
+  color: var(--red, #E84A5F);
+  font-size: 1.3rem;
+  transform: rotate(-2deg);
+  margin-top: 12px;
+  display: inline-block;
+}
+@media (max-width: 900px) {
+  .newspaper-grid {
+    grid-template-columns: 1fr;
+  }
+  .news-divider {
+    height: 1px;
+    width: 100%;
+  }
+}
+```
+
+---
+
+## 22. 极简日式留白
+
+适用场景：需要高级感、冥想感的封面或过渡页。大量留白 + 竖线 + 单个视觉焦点 + 极细字体。
+
+```html
+<section class="jp-minimal">
+  <div class="jp-vline"></div>
+  <div class="jp-kanji">猫</div>
+  <div class="jp-circle">🐱</div>
+  <div class="jp-subtitle">英 国 短 毛 猫 · 养 护 指 南</div>
+</section>
+```
+
+```css
+.jp-minimal {
+  background: #fafafa;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+}
+.jp-vline {
+  width: 1px;
+  height: 120px;
+  background: #1a1a1a;
+  margin-bottom: 2rem;
+}
+.jp-kanji {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 0.5em;
+  margin-bottom: 2rem;
+}
+.jp-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  font-size: 4rem;
+}
+.jp-subtitle {
+  font-size: 0.8rem;
+  color: #888;
+  letter-spacing: 0.2em;
+}
+```
+
+**使用原则**：
+- 留白面积不低于80%
+- 整页最多3个视觉元素
+- 字体极细或极粗，没有中间态
+- 适合做章节过渡、封面、情感收尾页
+
+---
+
+## 23. 胶片/电影字幕风
+
+适用场景：故事性内容、个人叙事、情感表达、品牌故事。模拟胶片颗粒质感 + 电影字幕式文字排列。
+
+```html
+<section class="film-section">
+  <div class="film-grain"></div>
+  <div class="film-frame">
+    <span class="film-meta">◉ 35mm · 2026</span>
+    <h2 class="film-title">British Shorthair</h2>
+    <p class="film-body">
+      温顺的蓝灰色被毛，圆滚滚的脸庞和铜色眼睛。<br>
+      它不会大声告诉你它不舒服——<br>
+      所以你要替它注意。
+    </p>
+  </div>
+</section>
+```
+
+```css
+.film-section {
+  background: #1a1612;
+  color: #f5e6d3;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(60px, 10vh, 120px) clamp(40px, 6vw, 100px);
+  position: relative;
+  overflow: hidden;
+}
+.film-grain {
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.film-frame {
+  border: 8px solid #f5e6d3;
+  border-radius: 4px;
+  padding: clamp(32px, 5vw, 56px);
+  max-width: 700px;
+  position: relative;
+}
+.film-meta {
+  position: absolute;
+  top: -24px;
+  left: 20px;
+  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-size: 0.6rem;
+  color: rgba(245, 230, 211, 0.4);
+}
+.film-title {
+  font-family: 'Instrument Serif', 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-style: italic;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+}
+.film-body {
+  font-size: 0.92rem;
+  line-height: 2.2;
+  opacity: 0.75;
+}
+```
+
+**使用原则**：
+- 暗调背景（深棕/深灰），文字用暖白不用纯白
+- 颗粒感滤镜用SVG feTurbulence实现，不用图片
+- 文字间距宽松（line-height ≥ 2），模拟字幕节奏
+- 适合叙事性强的内容：个人故事、品牌介绍、情感收尾
+
+---
+
+## 24. 全屏大片压字
+
+适用场景：视觉冲击力最大化的封面/Hero。全屏图片 + 底部渐变遮罩 + 大字压在图上。
+
+```html
+<section class="mag-hero">
+  <img class="mag-bg" src="your-image.jpg" alt="">
+  <div class="mag-overlay"></div>
+  <div class="mag-content">
+    <h1 class="mag-title">The Gentle<br>Giant.</h1>
+    <p class="mag-sub">BRITISH SHORTHAIR CARE GUIDE — 英国短毛猫养护指南</p>
+  </div>
+</section>
+```
+
+```css
+.mag-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(40px, 6vh, 80px) clamp(40px, 6vw, 100px);
+  overflow: hidden;
+}
+.mag-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.mag-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 25%, transparent 65%);
+  z-index: 1;
+}
+.mag-content {
+  position: relative;
+  z-index: 2;
+}
+.mag-title {
+  font-family: 'Playfair Display', 'Fraunces', 'Noto Serif SC', serif;
+  font-size: clamp(3rem, 9vw, 6rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.05;
+}
+.mag-sub {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+}
+```
+
+**使用原则**：
+- 图片必须高清、有主体，不用AI生成的stock风
+- 渐变遮罩从底部往上，保证文字可读
+- 标题超大（clamp 3rem-6rem），字母间距紧凑
+- 副标题用极细字重+高letter-spacing+半透明白
+- 适合封面、章节开头、视觉冲击页
+
+---
+
+## 25. 打字机/终端风
+
+适用场景：技术向内容、代码展示、CLI演示、极客感叙事、markdown风格呈现。
+
+```html
+<section class="typewriter-section">
+  <div class="type-header">cat_care_guide.md</div>
+  <div class="type-content">
+    <p>> 品种：英国短毛猫</p>
+    <p>> 性格：温顺、独立、不粘人但恋家</p>
+    <p>> 体重：公猫 4-8kg</p>
+    <p>> 寿命：12-20 年</p>
+    <p class="type-blank"></p>
+    <p>## 饮食</p>
+    <p>- 蛋白质 30-40%（动物蛋白）</p>
+    <p>- 湿粮占比 50-70%</p>
+    <p>- 每日 180-300 大卡</p>
+    <p class="type-blank"></p>
+    <p class="type-warn">⚠️ 极易发胖，运动=续命</p>
+    <span class="type-cursor"></span>
+  </div>
+</section>
+```
+
+```css
+.typewriter-section {
+  background: #faf8f5;
+  color: #2a2a2a;
+  padding: clamp(60px, 10vh, 120px) clamp(40px, 6vw, 100px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* 可选：网格纸纹理背景 */
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100' height='100' fill='none' stroke='%23e8e4dc' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+.type-header {
+  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-size: 1.8rem;
+  font-weight: 400;
+  border-bottom: 2px solid #333;
+  display: inline-block;
+  padding-bottom: 4px;
+  margin-bottom: 2rem;
+}
+.type-content {
+  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-size: 0.88rem;
+  line-height: 2.4;
+  max-width: 650px;
+}
+.type-content p {
+  margin: 0;
+}
+.type-blank {
+  height: 1.2em;
+}
+.type-warn {
+  color: var(--red, #E84A5F);
+  font-weight: 700;
+}
+.type-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background: #333;
+  animation: cursor-blink 1s infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+```
+
+**使用原则**：
+- 等宽字体只用 `DM Mono` 或 `Fira Code`
+- 行距宽松（line-height ≥ 2），营造逐行阅读的节奏感
+- 用 `>` 前缀模拟引用/输入，用 `##` 模拟标题层级
+- 闪烁光标用CSS animation实现，增加“正在输入”的动态感
+- 适合技术教程、开发者向内容、CLI风格展示、极客叙事
