@@ -1,6 +1,27 @@
 # 组件库
 
-> 20个经过验证的可复用组件，按使用频率排序。直接复制代码使用。
+> 40+个经过验证的可复用组件。直接复制代码使用。
+
+## 📌 场景索引（先查这里，再去找具体代码）
+
+| 场景 | 推荐组件（编号） |
+|------|------|
+| **Hero区/首屏大标题** | #25 Sparkles Text、#28 Typing Animation、#29 Kinetic Text、#26 Morphing Text |
+| **图片展示/头像** | #30 Pixel Image、#10 三列Chair卡片 |
+| **正文重点标注** | #31 Text Highlighter、#4 Key Insight、#6 Pull Quote |
+| **趣味/活动标题** | #32 Comic Text、#3 Section Header |
+| **装饰/CTA** | #33 Spinning Text、#27 Cool Mode、#20 CTA按钮 |
+| **卡片类** | #1 卡片组件库、#10 三列Chair、#13 技能卡片、#32 悬停揭示卡片 |
+| **引用/金句** | #2 引用块、#6 Pull Quote、#14 全屏暗色Quote、#41 巨大引号 |
+| **代码/终端** | #5 代码面板、#7 对话气泡 |
+| **导航/切换** | #9 导航栏、#15 Filter标签栏、#24 Tab切换 |
+| **步骤/流程** | #11 系统流程条、#23 圆形步骤 |
+| **对比/列表** | #12 Do/Don't、#31 对比表 |
+| **动效/滑动** | #28 Scroll Reveal、#25 手风琴、#26 翻转卡片、#27 堆叠卡片 |
+| **日历/时间** | #17 日历网格、#22 横向时间线 |
+| **旅行/生活** | #19 机票卡片、#20 住宿卡片、#37 手写明信片 |
+
+> 🚨 规则：每个页面至少用 **3个不同组件**，不允许整页只用卡片+标题。每个页面至少包含 **1个动效组件**（#25-33中任选）。
 
 ---
 
@@ -4603,3 +4624,341 @@ document.querySelectorAll('[data-sparkle-colors]').forEach(el => {
 ```
 
 ⚠️ 注意：粒子上限35个，超过不再生成。按钮不要用红色背景。粒子容器自动创建fixed全屏覆盖层。
+
+---
+
+## 28. Typing Animation（打字机动画）
+
+适用场景：`hero` `slogan` `首屏大标题` `多词循环`
+
+逐字打出+光标闪烁，支持多个词语循环切换（打出→停顿→删除→下一个）。
+
+```html
+<div class="typing-container">
+  <span class="typing-text" id="typingText"></span><span class="typing-cursor"></span>
+</div>
+```
+
+```css
+.typing-container {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--ink);
+}
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: var(--blue);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+```
+
+```js
+(function() {
+  const words = ['第一句话', '第二句话', '第三句话'];
+  let wordIndex = 0, charIndex = 0, isDeleting = false;
+  const el = document.getElementById('typingText');
+
+  function type() {
+    const chars = Array.from(words[wordIndex]);
+    if (!isDeleting) {
+      charIndex++;
+      el.textContent = chars.slice(0, charIndex).join('');
+      if (charIndex >= chars.length) { setTimeout(() => { isDeleting = true; type(); }, 1500); return; }
+      setTimeout(type, 100);
+    } else {
+      charIndex--;
+      el.textContent = chars.slice(0, charIndex).join('');
+      if (charIndex <= 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; setTimeout(type, 400); return; }
+      setTimeout(type, 50);
+    }
+  }
+  setTimeout(type, 600);
+})();
+```
+
+⚠️ 光标颜色用品牌蓝。打字速度100ms/字，删除50ms/字。多词循环时停顿1.5s。
+
+---
+
+## 29. Kinetic Text（动态字重文字）
+
+适用场景：`hero大标题` `交互装饰` `关于页`
+
+鼠标悬停时字符字重从300→900平滑过渡，相邻字符被"牵引"变为600。纯CSS+少量JS。
+
+```html
+<div class="kinetic-text" id="kineticDemo"></div>
+```
+
+```css
+.kinetic-text {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 300;
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--ink);
+}
+.kinetic-text span {
+  display: inline-block;
+  transition: font-weight 0.4s, -webkit-text-stroke-color 0.4s, padding 0.4s, color 0.4s;
+  -webkit-text-stroke-width: 0.02em;
+  -webkit-text-stroke-color: transparent;
+  cursor: default;
+}
+.kinetic-text span:hover {
+  font-weight: 900;
+  padding-inline: 0.08em;
+  -webkit-text-stroke-color: var(--blue);
+  color: var(--blue);
+}
+```
+
+```js
+(function() {
+  const text = '你的标题文字';
+  const container = document.getElementById('kineticDemo');
+  text.split('').forEach(char => {
+    const span = document.createElement('span');
+    span.textContent = char === ' ' ? '\u00A0' : char;
+    container.appendChild(span);
+  });
+  const spans = container.querySelectorAll('span');
+  spans.forEach((span, i) => {
+    span.addEventListener('mouseenter', () => {
+      if (i > 0) spans[i-1].style.fontWeight = '600';
+      if (i < spans.length - 1) spans[i+1].style.fontWeight = '600';
+    });
+    span.addEventListener('mouseleave', () => {
+      if (i > 0) spans[i-1].style.fontWeight = '';
+      if (i < spans.length - 1) spans[i+1].style.fontWeight = '';
+    });
+  });
+})();
+```
+
+⚠️ hover颜色用品牌蓝。字体用衬线体（Noto Serif SC）效果最好。
+
+---
+
+## 30. Pixel Image（像素渐显图片）
+
+适用场景：`hero` `about` `图片展示` `头像`
+
+图片被分割为N×N网格碎片，随机延迟淡入，然后从灰度变为彩色。
+
+```html
+<div class="pixel-container" id="pixelDemo"></div>
+```
+
+```css
+.pixel-container {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.pixel-piece {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+.pixel-piece.visible { opacity: 1; }
+.pixel-piece img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  filter: grayscale(1);
+  transition: filter 1.2s ease;
+}
+.pixel-container.color-revealed .pixel-piece img { filter: grayscale(0); }
+```
+
+```js
+(function() {
+  const container = document.getElementById('pixelDemo');
+  const rows = 6, cols = 6;
+  const imgSrc = '你的图片URL';
+
+  for (let i = 0; i < rows * cols; i++) {
+    const row = Math.floor(i / cols), col = i % cols;
+    const clipPath = `polygon(${col*(100/cols)}% ${row*(100/rows)}%, ${(col+1)*(100/cols)}% ${row*(100/rows)}%, ${(col+1)*(100/cols)}% ${(row+1)*(100/rows)}%, ${col*(100/cols)}% ${(row+1)*(100/rows)}%)`;
+    const piece = document.createElement('div');
+    piece.className = 'pixel-piece';
+    piece.style.clipPath = clipPath;
+    piece.style.transitionDelay = (Math.random() * 1200) + 'ms';
+    piece.innerHTML = `<img src="${imgSrc}" alt="pixel piece">`;
+    container.appendChild(piece);
+  }
+  setTimeout(() => container.querySelectorAll('.pixel-piece').forEach(p => p.classList.add('visible')), 300);
+  setTimeout(() => container.classList.add('color-revealed'), 1800);
+})();
+```
+
+⚠️ 网格推荐6x6或8x8。碎片延迟最大1200ms。灰度→彩色延迟1800ms。
+
+---
+
+## 31. Text Highlighter（手绘标注）
+
+适用场景：`正文重点` `教程` `引用` `金句标注`
+
+模拟真人用马克笔的效果标注文字。4种变体：黄色荧光、蓝色波浪下划线、红色画圈、蓝色方框。
+
+```html
+<!-- 黄色荧光笔 -->
+<span class="hl-yellow">重点文字</span>
+
+<!-- 蓝色波浪下划线 -->
+<span class="hl-blue-underline">重点文字</span>
+
+<!-- 红色画圈 -->
+<span class="hl-red-circle">关键词</span>
+
+<!-- 蓝色方框 -->
+<span class="hl-box">术语</span>
+```
+
+```css
+.hl-yellow {
+  background: linear-gradient(180deg, transparent 60%, rgba(244,215,88,0.4) 60%);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+.hl-blue-underline {
+  text-decoration: underline wavy var(--blue);
+  text-underline-offset: 4px;
+}
+.hl-red-circle {
+  border: 2.5px solid var(--red);
+  border-radius: 50% 45% 55% 40% / 50% 45% 55% 40%;
+  padding: 2px 8px;
+  display: inline-block;
+  animation: hl-wiggle 3s ease-in-out infinite;
+}
+@keyframes hl-wiggle { 0%, 100% { transform: rotate(-1deg); } 50% { transform: rotate(1deg); } }
+.hl-box {
+  border: 2.5px solid var(--blue);
+  border-radius: 4px;
+  padding: 2px 6px;
+  display: inline-block;
+}
+```
+
+⚠️ 荧光笔用黄色40%透明度。画圈用不规则border-radius制造手绘感。一个段落最多标注2处，不要过度使用。
+
+---
+
+## 32. Comic Text（漫画文字）
+
+适用场景：`趣味标题` `活动Banner` `错误页` `彩蛋`
+
+半色调圆点纹理+粗描边+倾斜+弹性入场动画。视觉冲击力极强。
+
+```html
+<div class="comic-text">BOOM!</div>
+```
+
+```css
+.comic-text {
+  font-family: 'Bangers', 'Comic Sans MS', Impact, sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  -webkit-text-stroke: 2px #000;
+  transform: skewX(-8deg);
+  text-transform: uppercase;
+  filter: drop-shadow(4px 4px 0px #000) drop-shadow(2px 2px 0px var(--red));
+  background-color: var(--yellow);
+  background-image: radial-gradient(circle at 1px 1px, var(--red) 1px, transparent 0);
+  background-size: 7px 7px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: comic-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+}
+@keyframes comic-pop {
+  from { opacity: 0; transform: skewX(-8deg) scale(0.8) rotate(-2deg); }
+  to { opacity: 1; transform: skewX(-8deg) scale(1) rotate(0deg); }
+}
+```
+
+⚠️ 需要Google Font: Bangers。圆点用红色+黄色底。一个页面最多出现1次，不要过度使用。
+
+---
+
+## 33. Spinning Text（环形旋转文字）
+
+适用场景：`装饰` `CTA` `about页` `logo周围`
+
+文字沿圆形路径匀速旋转，中心放Logo、图标或头像。
+
+```html
+<div style="position: relative; width: 200px; height: 200px;">
+  <div class="spinning-container" id="spinningDemo"></div>
+  <div class="spinning-center">✦</div>
+</div>
+```
+
+```css
+.spinning-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  animation: spin 12s linear infinite;
+}
+.spinning-container span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blue);
+  transform-origin: center;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spinning-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--ink);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+```
+
+```js
+(function() {
+  const text = 'build • create • design • share • ';
+  const container = document.getElementById('spinningDemo');
+  const radius = 85;
+  text.split('').forEach((letter, i) => {
+    const span = document.createElement('span');
+    span.textContent = letter;
+    const angle = (360 / text.length) * i;
+    span.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(-${radius}px)`;
+    container.appendChild(span);
+  });
+})();
+```
+
+⚠️ 旋转速度12s一圈。文字颜色用品牌蓝。中心圆用品牌黄。文字末尾加空格或符号分隔。
