@@ -6,11 +6,11 @@
 
 | 场景 | 推荐组件（编号） |
 |------|------|
-| **Hero区/首屏大标题** | #25 Sparkles Text、#28 Typing Animation、#29 Kinetic Text、#26 Morphing Text |
-| **图片展示/头像** | #30 Pixel Image、#10 三列Chair卡片 |
-| **正文重点标注** | #31 Text Highlighter、#4 Key Insight、#6 Pull Quote |
-| **趣味/活动标题** | #32 Comic Text、#3 Section Header |
-| **装饰/CTA** | #33 Spinning Text、#27 Cool Mode、#20 CTA按钮 |
+| **Hero区/首屏大标题** | #25 Sparkles Text、#46 Typing Animation、#47 Kinetic Text、#26 Morphing Text |
+| **图片展示/头像** | #48 Pixel Image、#10 三列Chair卡片 |
+| **正文重点标注** | #49 Text Highlighter、#4 Key Insight、#6 Pull Quote |
+| **趣味/活动标题** | #50 Comic Text、#3 Section Header |
+| **装饰/CTA** | #51 Spinning Text、#27 Cool Mode、#20 CTA按钮 |
 | **卡片类** | #1 卡片组件库、#10 三列Chair、#13 技能卡片、#32 悬停揭示卡片 |
 | **引用/金句** | #2 引用块、#6 Pull Quote、#14 全屏暗色Quote、#41 巨大引号 |
 | **代码/终端** | #5 代码面板、#7 对话气泡 |
@@ -24,15 +24,14 @@
 > 🚨 组件选择原则：
 > - **连贯性 > 多样性。** 一个页面的视觉语言应该统一，不是“组件展览会”。同类内容用同一种组件样式，不要每个 section 都换一种全新的视觉形式。
 > - **内容决定形式。** 先看内容是什么（流程？对比？金句？代码？），然后查索引找对应组件。不要为了用某个组件而硬塞内容。
-> - **动效组件克制使用。** 一个页面最多1-2个动效组件（#25-33），用在最重要的位置（Hero/结尾）。动效太多=廉价感。
-> - **重复是美德。** 同一页里步骤类内容全用同一种卡片、引用全用同一种样式——这种统一感才是设计感的来源。
+> - **动效组件克制使用。** 一个页面最多1-2个动效组件（#25-27、#46-51），用在最重要的位置（Hero/结尾）。动效太多=廉价感。
 
 > 🚫 **引用块禁令（最高优先级）：**
 > - **绝对禁止** 使用HTML默认 `<blockquote>` 样式（左侧灰色竖线+浅灰背景）
 > - **绝对禁止** 左色条+白底卡片的引用样式（特别丑）
 > - **绝对禁止** 任何未经设计的浏览器默认引用样式
-> - 需要引用/金句时，**必须**从下方组件中选用：#2 引用块卡片、#6 Pull Quote、#14 全屏暗色Quote、#31 Text Highlighter、#41 巨大引号、#44 极简留白引号
-> - 如果只是一句话的重点标注，用 #31 Text Highlighter（荧光笔/波浪线/画圈）而不是引用块
+> - 需要引用/金句时，**必须**从下方组件中选用：#3 引用块/Key Insight、#6 Pull Quote、#14 全屏暗色Quote、#49 Text Highlighter、#41 巨大引号、#44 极简留白引号
+> - 如果只是一句话的重点标注，用 #49 Text Highlighter（荧光笔/波浪线/画圈）而不是引用块
 
 ---
 
@@ -4704,7 +4703,7 @@ document.querySelectorAll('[data-sparkle-colors]').forEach(el => {
 
 ---
 
-## 28. Typing Animation（打字机动画）
+## 46. Typing Animation（打字机动画）
 
 适用场景：`hero` `slogan` `首屏大标题` `多词循环`
 
@@ -4763,7 +4762,7 @@ document.querySelectorAll('[data-sparkle-colors]').forEach(el => {
 
 ---
 
-## 29. Kinetic Text（动态字重文字）
+## 47. Kinetic Text（动态字重文字）
 
 适用场景：`hero大标题` `交互装饰` `关于页`
 
@@ -4824,7 +4823,7 @@ document.querySelectorAll('[data-sparkle-colors]').forEach(el => {
 
 ---
 
-## 30. Pixel Image（像素渐显图片）
+## 48. Pixel Image（像素渐显图片）
 
 适用场景：`hero` `about` `图片展示` `头像`
 
@@ -4885,7 +4884,7 @@ document.querySelectorAll('[data-sparkle-colors]').forEach(el => {
 
 ---
 
-## 31. Text Highlighter（手绘标注）
+## 49. Text Highlighter（手绘标注）
 
 适用场景：`正文重点` `教程` `引用` `金句标注`
 
@@ -4935,7 +4934,7 @@ document.querySelectorAll('[data-sparkle-colors]').forEach(el => {
 
 ---
 
-## 32. Comic Text（漫画文字）
+## 50. Comic Text（漫画文字）
 
 适用场景：`趣味标题` `活动Banner` `错误页` `彩蛋`
 
@@ -4973,7 +4972,7 @@ document.querySelectorAll('[data-sparkle-colors]').forEach(el => {
 
 ---
 
-## 33. Spinning Text（环形旋转文字）
+## 51. Spinning Text（环形旋转文字）
 
 适用场景：`装饰` `CTA` `about页` `logo周围`
 
