@@ -16,7 +16,7 @@
 
 信息清晰、步骤明确、有节奏的单页科普/教程。
 
-🔗 本地预览：`assets/template-tutorial.html`
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/assets/template-tutorial.html)
 
 ---
 
@@ -24,7 +24,7 @@
 
 视觉冲击、深浅面板交替、强节奏感的活动邀请页。
 
-🔗 本地预览：`demo-landing.html`
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/demo-landing.html)
 
 ---
 
@@ -32,7 +32,7 @@
 
 功能优先、交互感、信息密度高的应用型页面。
 
-🔗 本地预览：`demo-app.html`
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/demo-app.html)
 
 ---
 
@@ -40,7 +40,7 @@
 
 3:4 比例、字大、手机可读、一键导出 PNG 的图文卡片。
 
-🔗 本地预览：`demo-cards.html`
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/demo-cards.html)
 
 ---
 
@@ -48,7 +48,7 @@
 
 杂志编号风：全内联样式 + section 标签，复制粘贴进微信公众号编辑器即可。
 
-🔗 本地预览：`assets/demo-wechat.html`
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/assets/demo-wechat.html)
 
 ---
 
@@ -56,7 +56,7 @@
 
 16种经过验证的布局模式一览。
 
-🔗 本地预览：`demo-layouts.html`
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/demo-layouts.html)
 
 ---
 
@@ -64,7 +64,7 @@
 
 51个经过验证的可复用组件。
 
-🔗 本地预览：`components-preview.html`
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/components-preview.html)
 
 ---
 
