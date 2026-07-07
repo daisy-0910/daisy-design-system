@@ -16,7 +16,7 @@
 
 信息清晰、步骤明确、有节奏的单页科普/教程。
 
-🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/assets/template-tutorial.html)
+🔗 [在线预览](https://daisy-0910.github.io/daisy-design-system/demo-tutorial.html)
 
 ---
 

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daisy Tutorial Demo</title>
+  <style>
+    :root {
+      --honey: #F0C26F;
+      --cream: #F7F1E1;
+      --mint: #90C6BD;
+      --sky: #6AA9D1;
+      --orange: #E19655;
+      --ink: #1A1A2E;
+      --deep: #4A4A5A;
+      --soft: #EFE5D3;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(106,169,209,.1) 1px, transparent 1px),
+        linear-gradient(rgba(106,169,209,.1) 1px, transparent 1px),
+        var(--cream);
+      background-size: 32px 32px;
+    }
+    ::selection { background: var(--honey); color: var(--ink); }
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 24px auto;
+      background: rgba(247, 241, 225, .95);
+      border: 3px solid var(--ink);
+      border-radius: 28px;
+      box-shadow: 12px 14px 0 rgba(26, 26, 46, .14);
+      overflow: hidden;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 24px;
+      background: rgba(247, 241, 225, .92);
+      backdrop-filter: blur(14px);
+      border-bottom: 3px solid var(--ink);
+    }
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 2px solid transparent;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 800;
+      font-size: .86rem;
+    }
+    .nav-links a:first-child {
+      color: white;
+      background: var(--sky);
+      border-color: var(--ink);
+      box-shadow: 3px 4px 0 rgba(26, 26, 46, .14);
+    }
+    header {
+      min-height: 78vh;
+      display: grid;
+      grid-template-columns: 1fr .72fr;
+      gap: clamp(28px, 5vw, 68px);
+      align-items: center;
+      padding: clamp(42px, 8vw, 92px);
+      background: linear-gradient(135deg, var(--cream), rgba(144,198,189,.44));
+    }
+    .tag {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      background: var(--honey);
+      border: 2px solid var(--ink);
+      border-radius: 9px;
+      font-weight: 950;
+      transform: rotate(-3deg);
+      box-shadow: 4px 5px 0 rgba(26, 26, 46, .13);
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      line-height: .92;
+      letter-spacing: 0;
+    }
+    .lead {
+      max-width: 620px;
+      margin: 24px 0 0;
+      color: var(--deep);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.9;
+    }
+    .hero-card {
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: white;
+      border: 3px solid var(--ink);
+      border-radius: 26px;
+      box-shadow: 9px 11px 0 rgba(106,169,209,.22);
+      padding: 32px;
+      transform: rotate(1.5deg);
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 34px;
+      width: 74px;
+      height: 18px;
+      background: var(--orange);
+      border: 2px solid var(--ink);
+      transform: rotate(-7deg);
+    }
+    .hero-card strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 5vw, 4.6rem);
+      line-height: 1;
+    }
+    .hero-card span {
+      display: block;
+      margin-top: 16px;
+      color: var(--deep);
+      line-height: 1.7;
+    }
+    section {
+      padding: clamp(60px, 9vw, 110px) clamp(28px, 7vw, 86px);
+      border-top: 3px solid var(--ink);
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: clamp(28px, 5vw, 56px);
+    }
+    .num {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--sky);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      font-weight: 950;
+      box-shadow: 4px 5px 0 rgba(26, 26, 46, .14);
+    }
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.04;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card {
+      position: relative;
+      background: white;
+      border: 2px solid var(--ink);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 6px 7px 0 rgba(26, 26, 46, .09);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -9px;
+      left: 24px;
+      width: 44px;
+      height: 14px;
+      background: var(--honey);
+      border: 2px solid var(--ink);
+      transform: rotate(-4deg);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+    .card p, .step p {
+      margin: 0;
+      color: var(--deep);
+      line-height: 1.85;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: .42fr .58fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .note {
+      background: var(--mint);
+      border: 2px solid var(--ink);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 7px 8px 0 rgba(26, 26, 46, .11);
+    }
+    .note b {
+      display: block;
+      margin-bottom: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.7rem;
+    }
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      background: white;
+      border: 2px solid var(--ink);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .dot {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: var(--honey);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      font-weight: 950;
+    }
+    .practice {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .practice h2 { color: white; }
+    .practice .num {
+      color: var(--ink);
+      background: var(--honey);
+    }
+    .prompt {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--cream);
+      color: var(--ink);
+      border: 3px solid var(--honey);
+      border-radius: 24px;
+      padding: clamp(28px, 5vw, 48px);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.6rem, 4vw, 3.2rem);
+      line-height: 1.25;
+      text-align: center;
+    }
+    footer {
+      padding: 34px;
+      text-align: center;
+      color: var(--deep);
+      border-top: 3px solid var(--ink);
+      background: var(--soft);
+    }
+    @media (max-width: 900px) {
+      .shell { width: 100%; margin: 0; border-radius: 0; border-left: 0; border-right: 0; }
+      header, .split, .grid { grid-template-columns: 1fr; }
+      nav { align-items: flex-start; flex-direction: column; }
+      .hero-card { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav>
+      <div class="brand">Daisy Tutorial Demo</div>
+      <div class="nav-links">
+        <a href="components-preview.html">组件库</a>
+        <a href="#concept">概念</a>
+        <a href="#flow">流程</a>
+        <a href="#practice">练习</a>
+      </div>
+    </nav>
+
+    <header>
+      <div>
+        <span class="tag">English lesson · demo</span>
+        <h1>How to Build a Daily Routine</h1>
+        <p class="lead">一个真实可阅览的教程型页面示例：用 Daisy 的五色、插画风卡片、步骤流程和练习提示，展示英语课件/教程页可以长什么样。</p>
+      </div>
+      <div class="hero-card">
+        <div>
+          <strong>Wake up<br>Plan<br>Practice</strong>
+          <span>Three verbs. One simple routine.</span>
+        </div>
+      </div>
+    </header>
+
+    <section id="concept">
+      <div class="section-head">
+        <span class="num">01</span>
+        <h2>先给学生一个清晰结构</h2>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Vocabulary</h3>
+          <p>wake up, brush teeth, have breakfast, go to school. 先给词，再给句子。</p>
+        </article>
+        <article class="card">
+          <h3>Pattern</h3>
+          <p>I usually ... at ... 用一个固定句型，让学生把内容替换进去。</p>
+        </article>
+        <article class="card">
+          <h3>Output</h3>
+          <p>最后让学生说出自己的 morning routine，而不是只看懂例句。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="flow">
+      <div class="section-head">
+        <span class="num">02</span>
+        <h2>再用步骤把练习串起来</h2>
+      </div>
+      <div class="split">
+        <div class="note">
+          <b>Teacher note</b>
+          讲解页不要塞太满。Daisy 风格适合把一句核心规则放大，再用贴纸、便签、步骤卡片辅助理解。
+        </div>
+        <div class="steps">
+          <div class="step"><span class="dot">1</span><div><b>Model</b><p>Teacher gives one example: I usually wake up at seven.</p></div></div>
+          <div class="step"><span class="dot">2</span><div><b>Substitute</b><p>Students swap the verb and time with their own routine.</p></div></div>
+          <div class="step"><span class="dot">3</span><div><b>Share</b><p>Pairs ask and answer: What do you usually do in the morning?</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="practice" class="practice">
+      <div class="section-head">
+        <span class="num">03</span>
+        <h2>最后给一个可直接开口的练习</h2>
+      </div>
+      <div class="prompt">I usually ______ at ______.<br>Then I ______ before school.</div>
+    </section>
+
+    <footer>
+      Daisy Design System · Tutorial demo · Honey / Cream / Mint / Sky / Orange
+    </footer>
+  </main>
+</body>
+</html>
