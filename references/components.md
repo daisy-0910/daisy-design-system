@@ -1764,7 +1764,7 @@ Caveat字体标题 + 虚线边框，适合轻松/教程类内容。
 <div class="hero-cluster">
   <div class="ring"></div>
   <div class="avatar-glow"></div>
-  <img class="avatar-img" src="avatar.jpg" alt="">
+  <img class="avatar-img" src="assets/ip/daisy-ip-wave.png" alt="Daisy IP">
   <span class="orbit-item" style="top:0;right:10%">标签1</span>
   <span class="orbit-item" style="bottom:10%;left:0">标签2</span>
 </div>
@@ -1787,6 +1787,7 @@ Caveat字体标题 + 虚线边框，适合轻松/教程类内容。
   width: 100%; height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 18%;
   position: relative;
   z-index: 2;
 }

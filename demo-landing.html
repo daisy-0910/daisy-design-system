@@ -224,10 +224,10 @@
       width: 64px; height: 64px;
       border-radius: 50%;
       margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
+      display: block;
+      object-fit: cover;
+      object-position: center 18%;
+      border: 3px solid var(--yellow);
     }
     .speaker-card:nth-child(1) .speaker-avatar { background: rgba(106,169,209,0.08); }
     .speaker-card:nth-child(2) .speaker-avatar { background: rgba(240,194,111,0.15); }
@@ -545,19 +545,19 @@
       </div>
       <div class="speaker-grid">
         <div class="speaker-card reveal reveal-d1">
-          <div class="speaker-avatar">🎨</div>
+          <img class="speaker-avatar" src="assets/ip/daisy-ip-wave.png" alt="Daisy IP">
           <h3 class="speaker-name">林知微</h3>
           <p class="speaker-role">独立插画师 · AI共创实验者</p>
           <p class="speaker-topic">从手绘到AI辅助创作，她如何用Midjourney和手绘结合，完成了一本独立绘本的全流程。</p>
         </div>
         <div class="speaker-card reveal reveal-d2">
-          <div class="speaker-avatar">🧠</div>
+          <img class="speaker-avatar" src="assets/ip/daisy-ip-bun.png" alt="Daisy IP">
           <h3 class="speaker-name">陈觉</h3>
           <p class="speaker-role">AIGC产品负责人 · 前大厂算法专家</p>
           <p class="speaker-topic">大模型落地产品的第一年：哪些AI应用真的跑通了？哪些只是Demo？</p>
         </div>
         <div class="speaker-card reveal reveal-d3">
-          <div class="speaker-avatar">✍️</div>
+          <img class="speaker-avatar" src="assets/ip/daisy-ip-think.png" alt="Daisy IP">
           <h3 class="speaker-name">苏小也</h3>
           <p class="speaker-role">独立写作者 · Newsletter主理人</p>
           <p class="speaker-topic">用AI做研究助手而非替代者——如何让Claude帮你写出真正有灵魂的长文。</p>

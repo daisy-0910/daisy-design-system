@@ -62,7 +62,7 @@
 ### P1 封面
 - 大标题（84px）用汇文明朝体（Huiwen Mincho），关键词用蓝色高亮块（`background: #6AA9D1; color: #fff; padding: 4px 16px; border-radius: 6px`）
 - 副标题（44px）一行显示，紧跟标题下方，`white-space: nowrap`
-- 圆形头像（`avatar.jpg`，120px，`border: 4px solid #F0C26F`）
+- 圆形 Daisy IP（优先 `assets/ip/daisy-ip-wave.png`，120px，`border: 4px solid #F0C26F`，`object-position: center 18%`）
 - 署名（作者名）44px + 介绍34px
 - 整体边框：`border: 28px solid #F0C26F`
 - 背景加浅色网格质感（`background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 40px 40px`）
@@ -75,7 +75,7 @@
 
 ### 最后一页 尾页
 - 金句（oversized引号装饰 `"` ，Fraunces 200px，opacity 0.15）
-- 圆形头像 + 署名（作者名）
+- 圆形 Daisy IP + 署名（作者名）
 - CTA：「关注 + 作者名」（英文卡片可用你的固定英文 CTA 短语）
 - 一行小字：你的签名档（见 `components.md` #43，中英文按卡片语言选择）
 - 底部品牌三色装饰条
@@ -102,7 +102,7 @@
 ## 🏷️ 品牌规范引用
 
 - 所有颜色、字体、禁忌遵守 `brand-dna.md`
-- 头像源文件：`assets/avatar.jpg`（HTML内用相对路径 `avatar.jpg` 引用，交付时复制到输出HTML同目录）
+- IP 源文件：优先使用 `assets/ip/daisy-ip-wave.png`，思考/练习页可用 `assets/ip/daisy-ip-think.png`，讲解页可用 `assets/ip/daisy-ip-bun.png`
 - 署名固定为你在 `template-cards.html` 中配置的作者名（模板内为占位符，使用前替换）
 - 品牌三色比例：主色6 : 强调3 : 点缀1
 - 背景主色：奶白 `#F7F1E1` / 深奶 `#EFE5D3`，深色面板用 `#1A1A2E`
@@ -127,7 +127,7 @@
 - [ ] 每页是否撑满画面（内容占满1080×1440，有呼吸感但不留大片空白）
 - [ ] 页面之间排版是否有变化（不能连续3页同一layout）
 - [ ] 品牌三色比例 6:3:1
-- [ ] 头像和署名是否正确（圆形头像+作者名）
+- [ ] Daisy IP 和署名是否正确（圆形 IP + 作者名）
 - [ ] 导出按钮是否工作（html2canvas本地文件 + JSZip CDN、exportAll打包zip一次性下载）
 - [ ] 卡片是否居中显示（transform-origin: top center）
 - [ ] 用localhost打开测试导出（file://协议下js加载受限）

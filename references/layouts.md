@@ -328,7 +328,7 @@
 
 ```html
 <section class="hero-vertical">
-  <div class="hero-avatar"><!-- 头像 --></div>
+  <img class="hero-avatar" src="assets/ip/daisy-ip-wave.png" alt="Daisy IP">
   <h1>标题</h1>
   <p class="hero-subtitle">副标题描述</p>
   <div class="hero-tags">
@@ -352,6 +352,9 @@
   width: clamp(120px, 18vw, 180px);
   height: clamp(120px, 18vw, 180px);
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 4px solid #F0C26F;
   margin-bottom: 2rem;
 }
 ```
