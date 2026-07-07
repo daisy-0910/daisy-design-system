@@ -83,7 +83,7 @@ Landing页面高频使用的组件：
   align-items: center;
   gap: 8px;
   padding: 16px 36px;
-  background: var(--blue, #2B7FD8);
+  background: var(--blue, #6AA9D1);
   color: #fff;
   border-radius: 12px;
   text-decoration: none;
@@ -93,16 +93,16 @@ Landing页面高频使用的组件：
 }
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(43,127,216,0.3);
+  box-shadow: 0 8px 24px rgba(106,169,209,0.3);
 }
 
 /* 黄色变体（用于深色背景上） */
 .cta-button--yellow {
-  background: var(--yellow, #F4D758);
+  background: var(--yellow, #F0C26F);
   color: var(--ink, #1A1A2E);
 }
 .cta-button--yellow:hover {
-  box-shadow: 0 8px 24px rgba(244,215,88,0.3);
+  box-shadow: 0 8px 24px rgba(240,194,111,0.3);
 }
 ```
 

@@ -33,7 +33,7 @@ Tab栏 / 侧边栏导航
   top: 0;
   z-index: 100;
   height: 56px;
-  background: var(--cream, #fefcf6);
+  background: var(--cream, #F7F1E1);
   border-bottom: 1px solid rgba(26,26,26,.06);
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@ App型页面色彩更简洁：
 
 | 元素 | 色值 | 说明 |
 |------|------|------|
-| 背景 | `#fefcf6` | 保持品牌暖底 |
+| 背景 | `#F7F1E1` | 保持品牌暖底 |
 | 卡片 | `#fff` | 白卡片浮于背景上 |
 | Header/Badge | `var(--blue)` | 品牌蓝做主交互色 |
 | 强调/边框 | `var(--yellow)` | 黄色做border/badge |
@@ -134,7 +134,7 @@ App型页面色彩更简洁：
   justify-content: center;
 }
 .modal-content {
-  background: var(--cream, #fefcf6);
+  background: var(--cream, #F7F1E1);
   border-radius: 16px;
   padding: clamp(24px, 3vw, 40px);
   max-width: 560px;
@@ -172,8 +172,8 @@ App型页面色彩更简洁：
 }
 .app-input:focus {
   outline: none;
-  border-color: var(--blue, #2B7FD8);
-  box-shadow: 0 0 0 3px rgba(43,127,216,0.1);
+  border-color: var(--blue, #6AA9D1);
+  box-shadow: 0 0 0 3px rgba(106,169,209,0.1);
 }
 ```
 
