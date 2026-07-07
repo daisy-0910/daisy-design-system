@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=components-preview.html">
+  <title>Daisy Design System</title>
+  <style>
+    :root {
+      --honey: #F0C26F;
+      --cream: #F7F1E1;
+      --mint: #90C6BD;
+      --sky: #6AA9D1;
+      --orange: #E19655;
+      --ink: #1A1A2E;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(135deg, var(--cream), var(--honey));
+    }
+    main {
+      width: min(680px, 100%);
+      border: 3px solid var(--ink);
+      border-radius: 24px;
+      background: rgba(247, 241, 225, 0.86);
+      padding: 36px;
+      box-shadow: 10px 12px 0 rgba(26, 26, 46, 0.14);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 8vw, 4.5rem);
+      line-height: 0.95;
+    }
+    p { margin: 0 0 20px; line-height: 1.7; }
+    a {
+      display: inline-block;
+      color: white;
+      background: var(--sky);
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 4px 5px 0 rgba(26, 26, 46, 0.18);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Daisy Design System</h1>
+    <p>Opening the component preview...</p>
+    <a href="components-preview.html">Open components preview</a>
+  </main>
+</body>
+</html>
