@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daisy IP Gallery</title>
+  <style>
+    :root {
+      --honey: #F0C26F;
+      --cream: #F7F1E1;
+      --mint: #90C6BD;
+      --sky: #6AA9D1;
+      --orange: #E19655;
+      --ink: #1A1A2E;
+      --soft: #EFE5D3;
+      --paper: #FFFDF8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans SC", sans-serif;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 44px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 46px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      background: var(--honey);
+      box-shadow: 8px 7px 0 var(--mint);
+    }
+
+    .palette {
+      display: flex;
+      overflow: hidden;
+      border: 3px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+    }
+
+    .swatch {
+      width: 40px;
+      height: 20px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      height: 42px;
+      padding: 0 22px;
+      border: 3px solid var(--ink);
+      border-radius: 8px;
+      background: var(--mint);
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 24px 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 520px;
+      margin: 0;
+      color: #4A4A5A;
+      font-size: 1.12rem;
+      line-height: 1.8;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 390px;
+      border: 4px solid var(--ink);
+      border-radius: 8px;
+      background: var(--mint);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 110px;
+      right: 28px;
+      bottom: 24px;
+      border-radius: 50%;
+      background: var(--honey);
+    }
+
+    .hero-card img {
+      position: absolute;
+      left: 50%;
+      bottom: -36px;
+      width: min(78%, 440px);
+      transform: translateX(-50%);
+      filter: drop-shadow(0 16px 0 rgba(26, 26, 46, 0.08));
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .ip-card {
+      min-height: 330px;
+      border: 3px solid var(--ink);
+      border-radius: 8px;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .ip-visual {
+      height: 220px;
+      display: grid;
+      place-items: end center;
+      background: var(--soft);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .ip-visual img {
+      width: 88%;
+      max-height: 210px;
+      object-fit: contain;
+      object-position: bottom center;
+    }
+
+    .ip-copy {
+      padding: 18px 18px 20px;
+    }
+
+    .ip-copy h2 {
+      margin: 0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.28rem;
+      letter-spacing: 0;
+    }
+
+    .ip-copy p {
+      margin: 0;
+      color: #4A4A5A;
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+
+    .use-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 48px;
+    }
+
+    .note {
+      border: 3px solid var(--ink);
+      border-radius: 8px;
+      padding: 24px;
+      background: var(--honey);
+    }
+
+    .note:nth-child(2) {
+      background: var(--sky);
+    }
+
+    .note h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+    }
+
+    .note p {
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .use-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>Daisy Design System</span>
+      </div>
+      <div class="palette" aria-label="Daisy palette">
+        <span class="swatch" style="background:#F0C26F"></span>
+        <span class="swatch" style="background:#F7F1E1"></span>
+        <span class="swatch" style="background:#90C6BD"></span>
+        <span class="swatch" style="background:#6AA9D1"></span>
+        <span class="swatch" style="background:#E19655"></span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Personal IP</span>
+        <h1>Daisy<br />Character</h1>
+        <p class="intro">
+          黑发、腮红、薄荷条纹衫，是 Daisy 的陪伴式讲解者。适合放在英语课 PPT、教程页、图文卡片和个人品牌页面里。
+        </p>
+      </div>
+      <div class="hero-card">
+        <img src="assets/ip/daisy-ip-wave.png" alt="Daisy waving character" />
+      </div>
+    </section>
+
+    <section class="gallery" aria-label="Daisy IP assets">
+      <article class="ip-card">
+        <div class="ip-visual"><img src="assets/ip/daisy-ip-ponytail.png" alt="Daisy ponytail" /></div>
+        <div class="ip-copy">
+          <h2>Ponytail</h2>
+          <p>封面、自我介绍、欢迎页。</p>
+        </div>
+      </article>
+      <article class="ip-card">
+        <div class="ip-visual"><img src="assets/ip/daisy-ip-bun.png" alt="Daisy bun" /></div>
+        <div class="ip-copy">
+          <h2>Bun</h2>
+          <p>正式讲解、知识点说明。</p>
+        </div>
+      </article>
+      <article class="ip-card">
+        <div class="ip-visual"><img src="assets/ip/daisy-ip-headband.png" alt="Daisy headband" /></div>
+        <div class="ip-copy">
+          <h2>Headband</h2>
+          <p>鼓励语、总结、温柔提示。</p>
+        </div>
+      </article>
+      <article class="ip-card">
+        <div class="ip-visual"><img src="assets/ip/daisy-ip-wave.png" alt="Daisy wave" /></div>
+        <div class="ip-copy">
+          <h2>Wave</h2>
+          <p>课堂互动、开场、打招呼。</p>
+        </div>
+      </article>
+      <article class="ip-card">
+        <div class="ip-visual"><img src="assets/ip/daisy-ip-think.png" alt="Daisy thinking" /></div>
+        <div class="ip-copy">
+          <h2>Think</h2>
+          <p>思考题、练习页、反思页。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="use-strip">
+      <div class="note">
+        <h3>PPT 使用</h3>
+        <p>人物占画面 25% 到 40%，放在右侧或角落，像老师在旁边陪学生理解内容。</p>
+      </div>
+      <div class="note">
+        <h3>页面使用</h3>
+        <p>不要重滤镜，不裁脸，不压太小；保持白底或奶油底，让手绘线条清楚可见。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

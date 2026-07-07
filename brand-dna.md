@@ -21,15 +21,32 @@
 
 ---
 
-## 👤 头像/IP形象
+## 👤 Daisy 专属 IP 形象
 
-请将你的头像文件放入 `assets/avatar.jpg`（建议正方形，至少 400×400px）。
+Daisy 的专属 IP 是一个温暖、亲切、手绘感的黑发女孩形象：黑色粗线条、圆脸、腮红、薄荷绿条纹上衣，适合出现在英语课 PPT、教程页、图文卡片、Landing 页和个人介绍页中。
 
-如果你有完整IP形象（全身/半身），放入 `assets/character.png`。
+### 固定视觉特征
+- 黑色手绘粗线条，边缘有轻微蜡笔/马克笔质感
+- 圆脸、豆豆眼、粉色腮红，表情友好
+- 薄荷绿与奶油白条纹上衣，呼应 Daisy 主色
+- 整体气质：亲切、轻松、教学感、有个人品牌记忆点
+
+### 已收录资产
+| 文件 | 推荐用途 |
+|------|----------|
+| `assets/ip/daisy-ip-ponytail.png` | 欢迎、封面、自我介绍 |
+| `assets/ip/daisy-ip-bun.png` | 正式讲解、知识点说明 |
+| `assets/ip/daisy-ip-headband.png` | 温柔提示、总结页、鼓励语 |
+| `assets/ip/daisy-ip-wave.png` | 打招呼、课堂互动、开场页 |
+| `assets/ip/daisy-ip-think.png` | 思考题、选择题、反思页 |
 
 ### 使用规则
-- 需要头像时优先用 `assets/avatar.jpg`
-- 是否在页面中使用IP形象由你决定，不强制
+- PPT 封面优先用 `daisy-ip-wave.png` 或 `daisy-ip-ponytail.png`
+- 教程/知识点页优先用 `daisy-ip-bun.png`
+- 互动页、鼓励页优先用 `daisy-ip-headband.png`
+- 思考/练习页优先用 `daisy-ip-think.png`
+- IP 图片不要加重滤镜，不要裁掉脸，不要压得太小
+- 和文字同屏时，IP 占画面 25%~40%，作为“陪伴式讲解者”而不是装饰小图标
 
 ---
 
